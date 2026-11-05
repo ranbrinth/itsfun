@@ -15,17 +15,13 @@ export const Route = createRootRoute({
         name: "description",
         content: "Launch and trade Solana coins on the pump bonding curve. Real mainnet transactions.",
       },
-      { name: "theme-color", content: "#0c0e0b" },
+      { name: "theme-color", content: "#000000" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "stylesheet", href: appCss },
       { rel: "manifest", href: "/__grok/manifest.webmanifest" },
       { rel: "apple-touch-icon", href: "/__grok/icon-180.png" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@500;600;700&display=swap",
-      },
     ],
   }),
   component: () => (
