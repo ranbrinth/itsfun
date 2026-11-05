@@ -43,7 +43,11 @@ export async function freshMint() {
   return { publicKey: kp.publicKey.toBase58(), secret: kp.secretKey };
 }
 
-export async function signAndSend(txB64: string, mintSecret?: Uint8Array) {
+export async function signAndSend(
+  txB64: string,
+  mintSecret?: Uint8Array,
+  cluster: "mainnet" | "devnet" = "mainnet",
+) {
   const { Buffer } = await import("buffer");
   const { Keypair, VersionedTransaction } = await import("@solana/web3.js");
   const p = provider();
@@ -51,5 +55,7 @@ export async function signAndSend(txB64: string, mintSecret?: Uint8Array) {
   const tx = VersionedTransaction.deserialize(Buffer.from(txB64, "base64"));
   if (mintSecret) tx.sign([Keypair.fromSecretKey(mintSecret)]);
   const signed = await p.signTransaction(tx);
-  return sendSignedTx({ data: { tx: Buffer.from(signed.serialize()).toString("base64") } });
+  return sendSignedTx({
+    data: { tx: Buffer.from(signed.serialize()).toString("base64"), cluster },
+  });
 }
