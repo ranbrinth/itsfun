@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { parseCluster, type Cluster } from "./chain.server";
+import { parseCluster, type Cluster } from "./cluster";
 
 function clusterOf(value: unknown): Cluster {
   return parseCluster(value);

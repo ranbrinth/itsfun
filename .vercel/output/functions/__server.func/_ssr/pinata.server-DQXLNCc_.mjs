@@ -1,5 +1,5 @@
-import { r as PINATA_JWT } from "./secrets.server-BACvW82w.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/pinata.server-Dn8BkOpm.js
+import { n as PINATA_JWT } from "./secrets.server-DNwvpzhR.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/pinata.server-DQXLNCc_.js
 function gateway(cid) {
 	return `https://gateway.pinata.cloud/ipfs/${cid}`;
 }

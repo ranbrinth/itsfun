@@ -16,8 +16,9 @@ import {
 } from "@solana/spl-token";
 import BN from "bn.js";
 import { JUPITER_API, SOLANA_RPC_DEVNET, SOLANA_RPC_MAINNET } from "./secrets.server";
+import { type Cluster } from "./cluster";
 
-import "@pump-fun/pump-sdk";
+export { parseCluster, type Cluster } from "./cluster";
 
 const nodeRequire = createRequire(import.meta.url);
 const {
@@ -33,8 +34,6 @@ const {
   getSellSolAmountFromTokenAmount: (args: Record<string, unknown>) => BN;
   normalizeQuoteMint: (mint: PublicKey) => PublicKey;
 };
-
-export type Cluster = "mainnet" | "devnet";
 
 type CurveAccount = {
   complete: boolean;
@@ -102,10 +101,6 @@ const USDC_MAINNET = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
 const USDC_DEVNET = "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU";
 
 const pools = new Map<Cluster, { connection: Connection; online: Online; rpc: string }>();
-
-export function parseCluster(value: unknown): Cluster {
-  return value === "devnet" ? "devnet" : "mainnet";
-}
 
 function pool(cluster: Cluster) {
   let hit = pools.get(cluster);
