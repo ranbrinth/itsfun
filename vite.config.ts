@@ -158,19 +158,13 @@ export default defineConfig(({ command, isPreview }) => ({
   },
   resolve: {
     tsconfigPaths: true,
-    alias: { buffer: "buffer" },
+    alias: {
+      buffer: "buffer",
+      "@pump-fun/pump-sdk": join(process.cwd(), "node_modules/@pump-fun/pump-sdk/dist/index.js"),
+    },
   },
   ssr: {
-    external: [
-      "@pump-fun/pump-sdk",
-      "@pump-fun/pump-swap-sdk",
-      "@pump-fun/agent-payments-sdk",
-      "@coral-xyz/anchor",
-      "@solana/web3.js",
-      "@solana/spl-token",
-      "bn.js",
-      "buffer",
-    ],
+    external: ["@solana/web3.js", "@solana/spl-token", "bn.js", "buffer"],
   },
   define: {
     global: "globalThis",
@@ -191,15 +185,7 @@ export default defineConfig(({ command, isPreview }) => ({
             preset: "vercel",
             serverDir: "./server",
             externals: {
-              external: [
-                "@pump-fun/pump-sdk",
-                "@pump-fun/pump-swap-sdk",
-                "@pump-fun/agent-payments-sdk",
-                "@coral-xyz/anchor",
-                "@solana/web3.js",
-                "@solana/spl-token",
-                "bn.js",
-              ],
+              external: ["@solana/web3.js", "@solana/spl-token", "bn.js"],
             },
           }),
         ]

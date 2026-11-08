@@ -1,4 +1,3 @@
-import { createRequire } from "node:module";
 import {
   ComputeBudgetProgram,
   Connection,
@@ -18,16 +17,17 @@ import BN from "bn.js";
 import { JUPITER_API, SOLANA_RPC_DEVNET, SOLANA_RPC_MAINNET } from "./secrets.server";
 import { type Cluster } from "./cluster";
 
+import * as pumpNs from "@pump-fun/pump-sdk";
+
 export { parseCluster, type Cluster } from "./cluster";
 
-const nodeRequire = createRequire(import.meta.url);
 const {
   OnlinePumpSdk,
   PUMP_SDK,
   getBuyTokenAmountFromSolAmount,
   getSellSolAmountFromTokenAmount,
   normalizeQuoteMint,
-} = nodeRequire("@pump-fun/pump-sdk") as {
+} = pumpNs as unknown as {
   OnlinePumpSdk: new (connection: Connection) => Online;
   PUMP_SDK: PumpSdk;
   getBuyTokenAmountFromSolAmount: (args: Record<string, unknown>) => BN;
